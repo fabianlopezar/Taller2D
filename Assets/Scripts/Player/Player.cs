@@ -13,7 +13,14 @@ public class Player : MonoBehaviour
     [Header("Dash info")]
     [SerializeField] private float dashSpeed;
     [SerializeField] private float dashDuration;
-    [SerializeField] private float dashTime;
+   private float dashTime;
+    
+    
+    [SerializeField] private float dashCooldown;
+    private float dashCooldownTimer;
+    [Header("Attack info")]
+    private bool isAttacking;
+    private int comboCounter;
 
     private float xInput;
     private int facingDir=1;
@@ -34,16 +41,21 @@ public class Player : MonoBehaviour
         CheckInput();
 
         dashTime -= Time.deltaTime;
-  
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            dashTime = dashDuration;
-        }
+        dashCooldownTimer -= Time.deltaTime;
        
+
         CollisionChecks();
 
         FlipController();
         AnimatorControllers();
+    }
+
+    private void DashAbility()
+    {
+        if( dashCooldownTimer < 0) { 
+        dashCooldownTimer = dashCooldown;
+        dashTime = dashDuration;
+        }
     }
 
     private void CollisionChecks()
@@ -54,9 +66,18 @@ public class Player : MonoBehaviour
     private void CheckInput()
     {
         xInput = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            isAttacking = true;
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            DashAbility();
         }
     }
 
@@ -84,6 +105,9 @@ public class Player : MonoBehaviour
         anim.SetBool("isMoving", isMoving);
         anim.SetBool("isGrounded", isGrounded);
         anim.SetBool("isDashing", dashTime > 0);
+
+        anim.SetBool("isAttacking", isAttacking);
+        anim.SetInteger("comboCounter", comboCounter);
     }
     private void Flip()
     {
@@ -105,5 +129,9 @@ if(rb.velocity.x>0 && !facingRight)
     {
         Gizmos.DrawLine(transform.position, new Vector3(transform.position.x,transform.position.y-groundCheckDistance));
     }
-
+    public void AttackOver()
+    {
+        isAttacking = false;
+        Debug.Log("ddd");
+    }
 }

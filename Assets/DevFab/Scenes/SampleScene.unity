@@ -796,7 +796,7 @@ MonoBehaviour:
   jumpForce: 2
   dashSpeed: 15
   dashDuration: 0.25
-  dashCooldown: 1.4
+  dashCooldown: 0
   groundCheckDistance: 0.3
   whatIsGround:
     serializedVersion: 2
@@ -964,7 +964,7 @@ GameObject:
   - component: {fileID: 1800578731468654426}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

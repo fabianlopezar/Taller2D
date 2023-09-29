@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player : Entity
+public class Player : Health
 {
     
     [Header("Move info")]
@@ -131,5 +131,13 @@ if(rb.velocity.x>0 && !facingRight)
         comboCounter++;
         if (comboCounter > 2)
             comboCounter = 0;       
+    }
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Corazon"))
+        {
+            currentHealth += 10;
+            Destroy(other.gameObject);
+        }
     }
 }

@@ -13,13 +13,13 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+          
         }
         else
         {
-            Destroy(gameObject);
-            Debug.Log("Cuidado! Mas de un GameManager en escena.");
+            Destroy(gameObject);         
         }
+        DontDestroyOnLoad(this.gameObject);
     }
     private void Start()
     {

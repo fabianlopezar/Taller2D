@@ -37,11 +37,16 @@ public class Player : Health
         dashCooldownTimer -= Time.deltaTime;
         comboTimeWindow -= Time.deltaTime;
       
- 
-
         FlipController();
         AnimatorControllers();
-    }
+        #region CheckPoint
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            estaMuerto = false;
+            currentHealth = 100;
+        }
+            #endregion
+        }
 
     private void DashAbility()
     {
@@ -83,24 +88,33 @@ public class Player : Health
 
     private void Movement()
     {
-        if (isAttacking)
-        {
-            rb.velocity = new Vector2(0, 0);
-        }
-        else if (dashTime > 0)
-        {
-            rb.velocity = new Vector2(facingDir*dashSpeed,0);
+        if (estaMuerto == false) { 
+            if (isAttacking)
+            {
+                rb.velocity = new Vector2(0, 0);
+            }
+            else if (dashTime > 0)
+            {
+                rb.velocity = new Vector2(facingDir*dashSpeed,0);
+            }
+            else
+            {
+            rb.velocity = new Vector2(xInput * moveSpeed, rb.velocity.y);
+            }
         }
         else
         {
-        rb.velocity = new Vector2(xInput * moveSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(0, 0);
         }
     }
 
     private void Jump()
     {
-        if(isGrounded)
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        if (estaMuerto == false)
+        {
+            if (isGrounded)
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
     }
 
     public void AnimatorControllers()
@@ -112,11 +126,12 @@ public class Player : Health
 
         anim.SetBool("isAttacking", isAttacking);
         anim.SetInteger("comboCounter", comboCounter);
+        anim.SetBool("IsDeath", estaMuerto);
     }
    
     private void FlipController()
     {
-if(rb.velocity.x>0 && !facingRight)
+    if(rb.velocity.x>0 && !facingRight)
         {
             Flip();
         }else if(rb.velocity.x<0 && facingRight)
@@ -139,15 +154,20 @@ if(rb.velocity.x>0 && !facingRight)
             currentHealth += 10;
             Destroy(other.gameObject);
         }
+        if (other.CompareTag("Bala"))
+        {
+            currentHealth-=50;
+            EstaMuerto();
+        }
     }
     public void EstaMuerto()
     {
-        //Activar animacion muerto
         if (currentHealth <= 0)
         {
-            anim.SetBool("isGrounded", true);
+           
+            estaMuerto = true;
         }
-        
-        
     }
+
+    
 }

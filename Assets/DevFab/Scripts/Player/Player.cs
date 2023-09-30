@@ -140,4 +140,14 @@ if(rb.velocity.x>0 && !facingRight)
             Destroy(other.gameObject);
         }
     }
+    public void EstaMuerto()
+    {
+        //Activar animacion muerto
+        if (currentHealth <= 0)
+        {
+            anim.SetBool("isGrounded", true);
+        }
+        
+        
+    }
 }

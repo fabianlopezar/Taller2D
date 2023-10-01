@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Entity : MonoBehaviour
+public class Entity : Health
 {
     protected Rigidbody2D rb;
     protected Animator anim;
@@ -21,8 +21,9 @@ public class Entity : MonoBehaviour
     }
 
     // Update is called once per frame
-    protected virtual void Update()
+    protected override void Update()
     {
+        base.Update();
         CollisionChecks();
     }
     private void CollisionChecks()

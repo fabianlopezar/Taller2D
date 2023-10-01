@@ -94,6 +94,6 @@ public class UpdateUI : MonoBehaviour
         // Puedes agregar aquí el código que deseas ejecutar cuando cambie de escena
         FindObjectName();
         SetValuesUI();
-        Debug.Log("Cambio de escena detectado. Se cargó la escena: " + scene.name);
+  //      Debug.Log("Cambio de escena detectado. Se cargó la escena: " + scene.name);
     }
 }

@@ -48,4 +48,10 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+    public void AddScore()
+    {
+        _puntos +=1;
+        UpdateUI.Instance.SetValuesUI();
+
+    }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
+using System.Collections;
 
-public class Player : Health
+public class Player :Entity
 {
     
     [Header("Move info")]
@@ -22,10 +23,22 @@ public class Player : Health
     private int comboCounter;
 
     private float xInput;
+    [Header("CheckPoint")]
+    public string checkpointName;
+
+    public GameObject balaPrefab;
+    public Transform spawnPointBala;
+
+    [Header("Disparo")]
+    public float prueba;
+    public Vector3 direction;
+    public Vector3 direction2;
+
 
     protected override void Start()
     {
         base.Start();
+
     }
     protected override void Update()
     {
@@ -39,13 +52,7 @@ public class Player : Health
       
         FlipController();
         AnimatorControllers();
-        #region CheckPoint
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            estaMuerto = false;
-            currentHealth = 100;
-        }
-            #endregion
+       
         }
 
     private void DashAbility()
@@ -64,6 +71,7 @@ public class Player : Health
 
         if (Input.GetKeyDown(KeyCode.X))
         {
+          Shoot();
             StartAttackEvent();
         }
         if (Input.GetKeyDown(KeyCode.Space))
@@ -133,9 +141,15 @@ public class Player : Health
     {
     if(rb.velocity.x>0 && !facingRight)
         {
+            direction = new Vector3(1, 0.0f, 0.0f);
+            direction2 = new Vector3(prueba, 0.0f, 0.0f);
+        
             Flip();
         }else if(rb.velocity.x<0 && facingRight)
         {
+            direction = new Vector3(-1, 0.0f, 0.0f);
+            direction2 = new Vector3(-prueba, 0.0f, 0.0f);
+            
             Flip();
         }
     }
@@ -154,20 +168,67 @@ public class Player : Health
             currentHealth += 10;
             Destroy(other.gameObject);
         }
-        if (other.CompareTag("Bala"))
-        {
-            currentHealth-=50;
-            EstaMuerto();
-        }
     }
     public void EstaMuerto()
     {
         if (currentHealth <= 0)
-        {
-           
+        {           
             estaMuerto = true;
+            EventoMuerte();
+            Debug.Log("g");
         }
     }
 
-    
+    public Transform EncontrarCheckPoint(string name)
+    {
+        GameObject checkpointEncontrado = GameObject.Find(name);
+        if (checkpointEncontrado != null)
+        {
+            return checkpointEncontrado.transform;
+        }
+        return null;
+    }
+    IEnumerator TeleportAfterDelay(GameObject player,float delay, Transform targetCheckPoint)
+    {
+
+        yield return new WaitForSeconds(delay);
+
+  
+        player.transform.position = targetCheckPoint.position;
+        estaMuerto = false;
+        currentHealth = 100;
+
+    }
+    public void EventoMuerte()
+    {
+        Transform checkpoint = EncontrarCheckPoint(checkpointName);
+        if (checkpoint != null)
+        {
+            StartCoroutine(TeleportAfterDelay(this.gameObject,3f,checkpoint));
+           
+        }
+        else
+        {
+            Debug.LogError("No se encontró el punto de control con el nombre: " + checkpointName);
+        }
+       }
+    public void Hit()
+    {
+        currentHealth -= 10;
+        //currentHealth -= 50;
+      
+        EstaMuerto();        
+    }
+    private void Shoot()
+    {       
+        //  Vector3 direction= new Vector3(transform.localScale.x, 0.0f, 0.0f);
+        
+      //  Vector3 direction2 = new Vector3(prueba, 0.0f, 0.0f);
+        //GameObject bala = Instantiate(balaPrefab, transform.position+direction*2, Quaternion.identity);
+        GameObject bala = Instantiate(balaPrefab, transform.position+direction2, Quaternion.identity);
+          bala.GetComponent<BalaScript>().SetDirection(direction);
+        
+        
+    }
+
 }

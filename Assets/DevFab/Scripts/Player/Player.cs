@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Player :Entity
 {
@@ -168,6 +169,12 @@ public class Player :Entity
             currentHealth += 10;
             Destroy(other.gameObject);
         }
+        if (other.CompareTag("Win"))
+        {
+           string nameScene = "Fin";
+            chronometer.Instance.DetenerCronometro();
+           SceneManager.LoadScene(nameScene);        
+        }
     }
     public void EstaMuerto()
     {
@@ -204,31 +211,23 @@ public class Player :Entity
         Transform checkpoint = EncontrarCheckPoint(checkpointName);
         if (checkpoint != null)
         {
-            StartCoroutine(TeleportAfterDelay(this.gameObject,3f,checkpoint));
-           
+            StartCoroutine(TeleportAfterDelay(this.gameObject,3f,checkpoint));          
         }
         else
         {
-            Debug.LogError("No se encontró el punto de control con el nombre: " + checkpointName);
+            Debug.LogError("Player: No se encontró el punto de control con el nombre: " + checkpointName);
         }
        }
     public void Hit()
     {
         currentHealth -= 10;
-        //currentHealth -= 50;
-      
         EstaMuerto();        
     }
     private void Shoot()
     {       
-        //  Vector3 direction= new Vector3(transform.localScale.x, 0.0f, 0.0f);
-        
-      //  Vector3 direction2 = new Vector3(prueba, 0.0f, 0.0f);
-        //GameObject bala = Instantiate(balaPrefab, transform.position+direction*2, Quaternion.identity);
         GameObject bala = Instantiate(balaPrefab, transform.position+direction2, Quaternion.identity);
           bala.GetComponent<BalaScript>().SetDirection(direction);
-        
-        
+               
     }
 
 }

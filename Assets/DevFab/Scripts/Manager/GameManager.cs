@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public int _gema2 { get; set; }
     public int _gema3 { get; set; }
     public int _puntos { get; set; }
+    public float _tiempo { get; set; }
 
     private void Awake()
     {

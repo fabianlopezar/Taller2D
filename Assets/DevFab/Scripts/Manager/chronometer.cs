@@ -8,7 +8,7 @@ public class chronometer : MonoBehaviour
 {
     public static chronometer Instance { get; private set; }
     public TMP_Text _cronometroTMP;
-    private float tiempoTranscurrido = 0f;
+    public float tiempoTranscurrido = 0f;
     private bool _cronometroActivo = true;
 
     void Awake()

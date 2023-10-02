@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/DevFab/Scenes/1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/DevFab/Scenes/2.unity
+    guid: 7e802f0acf1f71e4b8cd7710aca99956
+  - enabled: 1
+    path: Assets/DevFab/Scenes/Fin.unity
+    guid: 916a0ac7428a3404ea5070e10488c74f
+  - enabled: 1
+    path: Assets/DevFab/Scenes/Inicio.unity
+    guid: 813537ad129233243b9a7dc055cd9a9c
   m_configObjects: {}

@@ -1,7 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+/*Fabian Esteban Lopez Arias 2216110
+ * Carlos Andrés Garzón Guerrero 2220968
+ * johann alberto Bocanegra 2200850
+ * Nicolás Ramírez Arango 2195824
+ */
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class CameraMove : MonoBehaviour
 {
@@ -14,7 +16,5 @@ public class CameraMove : MonoBehaviour
         Vector3 position2 = transform.position;
         position2.y = Player.transform.position.y;
         transform.position = position2;
-
-
     }
 }

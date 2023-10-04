@@ -1,16 +1,23 @@
+/*Fabian Esteban Lopez Arias 2216110
+ * Carlos Andrés Garzón Guerrero 2220968
+ * johann alberto Bocanegra 2200850
+ * Nicolás Ramírez Arango 2195824
+ */
+/*
+    <summary>
+        descripcion de la clase:permite cambiar entre escenas del juego utilizando funciones públicas para cargar escenas específicas por nombre, y también se activa al colisionar con objetos que tengan etiquetas específicas, lo que provoca la transición a escenas determinadas.
+    </summary>
+*/
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class ChangeScene : MonoBehaviour
 {
+    /*<summary>
+     * Descripcion del atributo: Se utiliza para declarar un nombrepara buscar en la escena.
+     </summary>
+     */
     public string sceneName;  
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            SceneManager.LoadScene(sceneName); //Carga la nueva escena cuando se presiona la tecla "C".
-        }
-    }
     public void Scena1()
     {
         string nameScene = "1";

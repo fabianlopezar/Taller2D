@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/DevFab/Scenes/Inicio.unity
     guid: 813537ad129233243b9a7dc055cd9a9c
+  - enabled: 1
+    path: Assets/DevFab/Scenes/3.unity
+    guid: 2993b2892e629d440986b8a70970508e
   m_configObjects: {}

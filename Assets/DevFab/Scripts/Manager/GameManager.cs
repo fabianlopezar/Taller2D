@@ -1,12 +1,51 @@
+/*Fabian Esteban Lopez Arias 2216110
+ * Carlos Andrés Garzón Guerrero 2220968
+ * johann alberto Bocanegra 2200850
+ * Nicolás Ramírez Arango 2195824
+ */
 using UnityEngine;
+/*
+ * <summary>
+ * Descripcion clase: El código representa un administrador de juego con variables para gemas, puntuación y tiempo. Permite agregar gemas y puntuación, además de gestionar la persistencia entre escenas.
+ * </summary>
+ */
 public class GameManager : MonoBehaviour
 {
+    /*
+ * <summary>
+ * Descripcion atributo: una instancia estática de la clase GameManager, lo que permite acceder a esta instancia desde cualquier lugar del código.
+ * </summary>
+ */
     public static GameManager Instance { get; private set; }
-    
+    /*
+* <summary>
+* Descripcion atributo: : variables enteras que almacenan la cantidad de diferentes tipos de gemas recolectadas en el juego.
+* </summary>
+*/
     public int _gema1 { get; set; }
+    /*
+* <summary>
+* Descripcion atributo: : variables enteras que almacenan la cantidad de diferentes tipos de gemas recolectadas en el juego.
+* </summary>
+*/
     public int _gema2 { get; set; }
+    /*
+* <summary>
+* Descripcion atributo: : variables enteras que almacenan la cantidad de diferentes tipos de gemas recolectadas en el juego.
+* </summary>
+*/
     public int _gema3 { get; set; }
+    /*
+* <summary>
+* Descripcion atributo: una variable entera que representa la puntuación total del juego.
+* </summary>
+*/
     public int _puntos { get; set; }
+    /*
+* <summary>
+* Descripcion atributo: una variable flotante que almacena el tiempo transcurrido en el juego.
+* </summary>
+*/
     public float _tiempo { get; set; }
 
     private void Awake()

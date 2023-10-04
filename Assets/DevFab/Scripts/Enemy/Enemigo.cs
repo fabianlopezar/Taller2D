@@ -1,12 +1,40 @@
+/*Fabian Esteban Lopez Arias 2216110
+ * Carlos Andrés Garzón Guerrero 2220968
+ * johann alberto Bocanegra 2200850
+ * Nicolás Ramírez Arango 2195824
+ */
+/*
+    <summary>
+        descripcion de la clase:El código define un enemigo que sigue al jugador, dispara balas cuando está cerca y controla sus animaciones de ataque, además de gestionar su salud y eliminación en caso de quedarse sin ella.
+    </summary>
+*/
 using UnityEngine;
 
 public class Enemigo : Health
-{
+{   /*<summary>
+     * Descripcion del atributo: Se utiliza para rastrear la posición del jugador y determinar si el enemigo debe atacar.
+     </summary>
+     */
     public Transform player;
+    /*<summary>
+     * Descripcion del atributo: Este atributo público permite asignar un prefab de bala que el enemigo disparará cuando ataque al jugador.
+     </summary>
+     */
     public GameObject balaPrefab;
-    
+    /*<summary>
+     * Descripcion del atributo: Se utiliza para controlar la frecuencia de disparo del enemigo.
+     </summary>
+     */
     private float LastShoot;
+    /*<summary>
+     * Descripcion del atributo: Se utiliza para controlar las animaciones del enemigo, como la animación de ataque.
+     </summary>
+     */
     public Animator anim;
+    /*<summary>
+     * Descripcion del atributo: Se utiliza para activar la animación de ataque y controlar el comportamiento de disparo.
+     </summary>
+     */
     public bool atacando;
 
 

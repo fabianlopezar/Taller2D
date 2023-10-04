@@ -1,7 +1,11 @@
+/*Fabian Esteban Lopez Arias 2216110
+ * Carlos Andrés Garzón Guerrero 2220968
+ * johann alberto Bocanegra 2200850
+ * Nicolás Ramírez Arango 2195824
+ */
 using UnityEngine;
 using TMPro;
 using System.IO;
-/*Johann Alberto Bocanegra - 2200850*/
 
 [System.Serializable]
 public class Data
@@ -14,18 +18,33 @@ public class Data
     public string _name;
     public float _time;
 }
+/*
+ * <summary>
+ *Descripcion clase: El código define un script que gestiona la carga y guardado de datos del juego en formato JSON, además de mostrar esos datos en texto en la interfaz del juego. Utiliza la información de gemas, puntuación, tiempo y nombre del jugador.
+ * </summary>
+ */
+
 public class SaveData : MonoBehaviour
 {
-    public TMP_Text _nameTMP; //Este es el texto que recibo y guardo(_name).
+    /*
+     * <summary>
+     * dscripcion atributo
+     * </summary>
+     */
+    public TMP_Text _nameTMP;  
+    /*
+     * <summary>
+     * dscripcion atributo
+     * </summary>
+     */
+    public TMP_Text _showGema1, _showGema2, _showGema3,_showTiempo,_showScore, _showNameTMP;
+    /*
+    * <summary>
+    * dscripcion atributo
+    * </summary>
+    */
+    private string dataFilePath = "Assets/DevFab/JSONs/DataJSON.json";
 
-    public TMP_Text _showGema1, _showGema2, _showGema3,_showTiempo,_showScore, _showNameTMP;//Este texto muestra las monedas guardadas.
-    private string dataFilePath = "Assets/DevFab/JSONs/DataJSON.json"; //Creo un string con el nombre del archivo que quiero crear.
-
-    
-    public void Awake()
-    {
-     //   LoadDataFromJson();
-    }
     public void SaveDataToJson()
     {
         Data data = new Data();

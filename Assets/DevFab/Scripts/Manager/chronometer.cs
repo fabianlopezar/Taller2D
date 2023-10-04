@@ -1,19 +1,44 @@
-using UnityEngine.UI;
+/*Fabian Esteban Lopez Arias 2216110
+ * Carlos Andrés Garzón Guerrero 2220968
+ * johann alberto Bocanegra 2200850
+ * Nicolás Ramírez Arango 2195824
+ */
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-
+/*<summary>
+ * descripcion clase: Este código define un cronómetro que registra el tiempo transcurrido en una escena del juego. El cronómetro se muestra en un objeto de texto (TMP_Text) y se puede iniciar, detener y reiniciar. Además, se asegura de que el cronómetro persista entre las escenas del juego y ajusta el objeto de texto según la escena cargada.
+ </summary>
+ */
 public class chronometer : MonoBehaviour
-{
+{/*
+  * <summary>
+  * descripcion atributo: lo que permite acceder a esta instancia desde cualquier lugar del código.
+  * </summary>
+  */
     public static chronometer Instance { get; private set; }
+    /*
+  * <summary>
+  * descripcion atributo: una variable de tipo TMP_Text que representa el objeto de texto que muestra el cronómetro en la interfaz del juego.
+  * </summary>
+  */
     public TMP_Text _cronometroTMP;
+    /*
+  * <summary>
+  * descripcion atributo:  un valor flotante que almacena el tiempo transcurrido en segundos.
+  * </summary>
+  */
     public float tiempoTranscurrido = 0f;
+    /*
+  * <summary>
+  * descripcion atributo:  una variable booleana que indica si el cronómetro está activo o detenido.
+  * </summary>
+  */
     private bool _cronometroActivo = true;
 
     void Awake()
     {
-       // _cronometroTMP.text = "Tiempo: 0";
         FindObjectName();
         if (Instance == null)
         {

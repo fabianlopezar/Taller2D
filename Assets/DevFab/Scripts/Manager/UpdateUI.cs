@@ -7,14 +7,32 @@ using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+/*
+<summary>
+descripcion clase:actualizar y mostrar información en la interfaz de usuario (UI) utilizando TextMeshPro. También gestiona la persistencia y actualización de la UI a través de cambios de escena.
+</summary>
+*/
+  
 public class UpdateUI : MonoBehaviour
-{
-    public static UpdateUI Instance { get; set; }
+{/*
+<summary>
+Descripcion atributo: Se utiliza para implementar el patrón Singleton, garantizando que solo haya una instancia de la clase en el juego.
+</summary>
+*/
+  public static UpdateUI Instance { get; set; }
 
     [Header("TMP")]
+/*<summary>
+Descripcion atributo:Estas variables almacenan los nombres de los objetos de texto en la interfaz de usuario (UI) correspondientes a las gemas y el puntaje del juego.
+</summary>
+*/
     private string gem1, gem2, gem3, score;    
     //      0          1          2          3
     // _gem1TMP;   _gem2TMP;  _gem3TMP;  _scoreTMP;
+/*<summary>
+Descripcion atributo: Es un arreglo de objetos TMP_Text que almacenan referencias a los componentes de texto en la UI utilizados para mostrar información como las gemas y el puntaje.
+</summary>
+*/
     public TMP_Text[] _textosTMP;
 
     private void Awake()

@@ -5,18 +5,57 @@
  */
 using UnityEngine;
 
+/*
+<summary>
+Descripcion clase:
+</summary>
+*/
 public class Entity : Health
 {
+/*
+<summary>
+descripcion atributos:
+</summary>
+*/
     protected Rigidbody2D rb;
+/*
+<summary>
+descripcion atributos:
+</summary>
+*/
     protected Animator anim;
 
     protected int facingDir = 1;
+/*
+<summary>
+descripcion atributos:
+</summary>
+*/
     protected bool facingRight = true;
 
-    [Header("Collision info")]
+    [Header("Collision info")]/*
+<summary>
+descripcion atributos:
+</summary>
+*/
     [SerializeField] protected Transform groundCheck;
+/*
+<summary>
+descripcion atributos:
+</summary>
+*/
     [SerializeField] protected float groundCheckDistance;
+/*
+<summary>
+descripcion atributos:
+</summary>
+*/
     [SerializeField] protected LayerMask whatIsGround;
+/*
+<summary>
+descripcion atributos:
+</summary>
+*/
     protected bool isGrounded;
 
     protected virtual void Start()

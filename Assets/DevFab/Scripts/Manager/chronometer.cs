@@ -36,7 +36,12 @@ public class chronometer : MonoBehaviour
   * </summary>
   */
     private bool _cronometroActivo = true;
-
+    /*
+  * <summary>
+  * descripcion del metodo:  Inicializa la instancia única de la clase, 
+  * garantiza que el objeto persista entre las escenas y busca un objeto de texto (TMP_Text) en la escena por su nombre.
+  * </summary>
+  */
     void Awake()
     {
         FindObjectName();
@@ -50,7 +55,11 @@ public class chronometer : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
     }
-
+    /*
+* <summary>
+* descripcion del metodo:   Actualiza el tiempo transcurrido y muestra el valor en el objeto de texto si el cronómetro está activo.
+* </summary>
+*/
     void Update()
     {
         if (_cronometroActivo)
@@ -59,23 +68,39 @@ public class chronometer : MonoBehaviour
             _cronometroTMP.text = tiempoTranscurrido.ToString("F2");
         }
     }
-
+    /*
+* <summary>
+* descripcion del metodo:  Activa el cronómetro.
+* </summary>
+*/
     public void IniciarCronometro()
     {
         _cronometroActivo = true;
     }
-
+    /*
+* <summary>
+* descripcion del metodo: Detiene el cronómetro y guarda el tiempo transcurrido en una variable del GameManager.
+*/
     public void DetenerCronometro()
     {
         GameManager.Instance._tiempo = tiempoTranscurrido;
         _cronometroActivo = false;
     }
-
+    /*
+* <summary>
+* descripcion del metodo:  Restablece el tiempo transcurrido a cero y actualiza el objeto de texto.
+* </summary>
+*/
     public void ReiniciarCronometro()
     {
         tiempoTranscurrido = 0f;
         _cronometroTMP.text = "Tiempo: 0";
     }
+    /*
+* <summary>
+* descripcion del metodo:Busca un objeto de texto por su nombre y asigna su referencia a la variable "_cronometroTMP".
+* </summary>
+*/
     private void FindObjectName()
     {string name= "cronometroTMP";
             // Intenta encontrar el GameObject por su nombre
@@ -92,19 +117,31 @@ public class chronometer : MonoBehaviour
         }
         
     }
+    /*
+* <summary>
+* descripcion del metodo: Suscribe el método "HandleSceneLoaded" al evento de escena cargada para detectar cambios de escena.
+* </summary>
+*/
     private void OnEnable()
     {
         // Suscribirse al evento de escena cargada
         SceneManager.sceneLoaded += HandleSceneLoaded;
     }
-
+    /*
+* <summary>
+* descripcion del metodo:   Desuscribe el método "HandleSceneLoaded" del evento
+* de escena cargada para evitar problemas cuando el objeto se desactive o destruya.
+* </summary>
+*/
     private void OnDisable()
     {
         // Asegúrate de desuscribirte cuando el objeto se desactive o sea destruido
         SceneManager.sceneLoaded -= HandleSceneLoaded;
     }
 
+    //<summary>
     // Este método se ejecutará cada vez que se cargue una nueva escena
+    //<summary>
     private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
     {    //   Cambio de escena detectado. 
         // Puedes agregar aquí el código que deseas ejecutar cuando cambie de escena

@@ -7,14 +7,43 @@
 using UnityEngine.UI;
 using UnityEngine;
 
-
+/*
+<summary>
+Descripcion clase:Clase que gestiona la salud de un objeto en el juego y actualiza una barra de salud en la interfaz de usuario.
+</summary>
+*/
 public class Health : MonoBehaviour
 {
+    /*
+<summary>
+Descripcion de atributos:Una referencia a una imagen (Image) que representa la barra de salud en la interfaz de usuario.
+</summary>
+*/
     public Image slideHealth;
+    /*
+<summary>
+Descripcion de atributos:La salud actual del objeto.
+</summary>
+*/
     public float currentHealth;
+    /*
+<summary>
+Descripcion de atributos:La salud máxima del objeto.
+</summary>
+*/
     public float maxHealth;
+    /*
+<summary>
+Descripcion de atributos:Un booleano que indica si el objeto está muerto o no.
+</summary>
+*/
     public bool estaMuerto=false;
-
+/*
+<summary>
+Descripcion de metodo:Método que se llama en cada fotograma y actualiza la barra
+de salud en función de la salud actual y máxima del objeto.
+</summary>
+*/
     protected virtual void Update()
     {
  

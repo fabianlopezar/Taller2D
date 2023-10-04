@@ -34,7 +34,11 @@ Descripcion atributo: Es un arreglo de objetos TMP_Text que almacenan referencia
 </summary>
 */
     public TMP_Text[] _textosTMP;
-
+    /*<summary>
+Descripcion del metodo: Inicializa la instancia única de la clase UpdateUI, garantizando que solo
+    haya una instancia en el juego, y busca objetos de texto en la interfaz de usuario.
+</summary>
+*/
     private void Awake()
     {
         if (Instance == null)
@@ -49,12 +53,20 @@ Descripcion atributo: Es un arreglo de objetos TMP_Text que almacenan referencia
         DontDestroyOnLoad(this.gameObject);
         FindObjectName();
     }
+    /*<summary>
+Descripcion del metodo:  Llama al método "SetValuesUI()" para configurar los valores en la interfaz de
+    usuario al inicio del juego y llama a "InicializarValores()" para asignar nombres de objetos de texto.
+</summary>
+*/
     public void Start()
     {
         SetValuesUI();
         InicializarValores();
     }
-
+    /*<summary>
+Descripcion del metodo:  Asigna nombres de objetos de texto a las variables "gem1", "gem2", "gem3" y "score".
+</summary>
+*/
     private void InicializarValores()
     {
         gem1 = "gema1TMP";
@@ -62,7 +74,11 @@ Descripcion atributo: Es un arreglo de objetos TMP_Text que almacenan referencia
         gem3 = "gema3TMP";
         score = "scoreTMP";
     }
-
+    /*<summary>
+Descripcion del metodo: Actualiza los valores
+de los objetos de texto en la interfaz con los valores actuales de gemas y puntaje del GameManager.
+</summary>
+*/
     public void SetValuesUI()
     {
         _textosTMP[0].text = ""+GameManager.Instance._gema1;
@@ -70,6 +86,11 @@ Descripcion atributo: Es un arreglo de objetos TMP_Text que almacenan referencia
         _textosTMP[2].text = ""+ GameManager.Instance._gema3;
         _textosTMP[3].text = ""+ GameManager.Instance._puntos;
     }
+    /*<summary>
+Descripcion del metodo: Encuentra objetos de texto en la interfaz por sus nombres y asigna
+las referencias a las variables "_textosTMP".
+</summary>
+*/
     public void FindObjectName()
     {
         //bucle for recorriendo una lista.
@@ -89,7 +110,10 @@ Descripcion atributo: Es un arreglo de objetos TMP_Text que almacenan referencia
             }
         }
     }
-
+    /*<summary>
+Descripcion del metodo: Crea y llena una lista de nombres de objetos de texto.
+</summary>
+*/
     private static List<string> LlenarLista()
     {
         List<string> lista = new List<string>();
@@ -99,19 +123,31 @@ Descripcion atributo: Es un arreglo de objetos TMP_Text que almacenan referencia
         lista.Add("scoreTMP");
         return lista;
     }
+    /*<summary>
+Descripcion del metodo: Suscribe el método "HandleSceneLoaded" al evento de escena cargada para detectar cambios de escena.
+</summary>
+*/
     private void OnEnable()
     {
         // Suscribirse al evento de escena cargada
         SceneManager.sceneLoaded += HandleSceneLoaded;
     }
-
+    /*<summary>
+Descripcion del metodo:Desuscribe el método "HandleSceneLoaded" del evento de
+escena cargada para evitar problemas cuando el objeto se desactive o destruya.
+</summary>
+*/
     private void OnDisable()
     {
         // Asegúrate de desuscribirte cuando el objeto se desactive o sea destruido
         SceneManager.sceneLoaded -= HandleSceneLoaded;
     }
 
-    // Este método se ejecutará cada vez que se cargue una nueva escena
+    /*<summary>
+     * Descripcion del metodo:Este método se ejecuta cada vez que se carga una nueva escena y se utiliza para buscar 
+     * nuevamente los objetos de texto en la escena recién cargada y actualizar la interfaz.
+    </summary>
+*/
     private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Puedes agregar aquí el código que deseas ejecutar cuando cambie de escena

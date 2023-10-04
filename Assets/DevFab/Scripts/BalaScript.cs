@@ -35,28 +35,44 @@ public class BalaScript : MonoBehaviour
     */
     private Vector3 Direction;
 
-
+    /*<summary>
+   * Descripcion del Metodo:Configura el Rigidbody2D y programa la destrucción de la bala después de 2 segundos.
+   </summary>
+   */
     private void Start()
     {
         Rigidbody2D = GetComponent<Rigidbody2D>();
         Invoke("DestroyBullet", 2.0f);
     }
-
+    /*<summary>
+   * Descripcion del Metodo:Actualiza el Rigidbody2D para mover la bala según la dirección y velocidad especificadas.
+   </summary>
+   */
     private void FixedUpdate()
     {
         Rigidbody2D.velocity = Direction * Speed;
     }
-
+    /*<summary>
+   * Descripcion del Metodo: Establece la dirección de la bala.
+   </summary>
+   */
     public void SetDirection(Vector3 direction)
     {
         Direction = direction;
     }
-
+    /*<summary>
+  * Descripcion del Metodo: Destruye la bala.
+  </summary>
+  */
     public void DestroyBullet()
     {
         Destroy(gameObject);
     }
-
+    /*<summary>
+* Descripcion del Metodo: Se llama cuando la bala colisiona con otro objeto y 
+* realiza acciones específicas si colisiona con un objeto de tipo "Enemigo" o "Player".
+</summary>
+*/
     private void OnTriggerEnter2D(Collider2D other)
     {
         Enemigo enemigo = other.GetComponent<Enemigo>();

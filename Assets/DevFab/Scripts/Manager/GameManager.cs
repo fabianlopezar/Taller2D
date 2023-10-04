@@ -47,7 +47,11 @@ public class GameManager : MonoBehaviour
 * </summary>
 */
     public float _tiempo { get; set; }
-
+    /*
+* <summary>
+* Descripcion del metodo:  Inicializa la instancia única de la clase GameManager y asegura que el objeto persista entre las escenas del juego.
+* </summary>
+*/
     private void Awake()
     {
         if (Instance == null)
@@ -61,10 +65,21 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
     }
+    /*
+* <summary>
+* Descripcion del metodo:Llama al método "SetValuesUI()" de la clase "UpdateUI" para configurar
+* los valores en la interfaz de usuario al inicio del juego.
+* </summary>
+*/
     private void Start()
     {
         UpdateUI.Instance.SetValuesUI(); 
     }
+    /*
+* <summary>
+* Descripcion del metodo:Agrega gemas al jugador según su tipo (gema1, gema2 o gema3), actualiza la puntuación y actualiza la interfaz de usuario.
+* </summary>
+*/
     public void AddGema(string name)
     {
         switch (name)
@@ -88,6 +103,11 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+    /*
+* <summary>
+* Descripcion del metodo:Aumenta la puntuación del jugador en 1 punto y actualiza la interfaz de usuario.
+* </summary>
+*/
     public void AddScore()
     {
         _puntos +=1;

@@ -28,23 +28,36 @@ public class SaveData : MonoBehaviour
 {
     /*
      * <summary>
-     * dscripcion atributo
+     * descripcion atributo: Variable que almacena un objeto de texto (TMP_Text) utilizado para mostrar el nombre del jugador en la interfaz.
      * </summary>
      */
-    public TMP_Text _nameTMP;  
+    public TMP_Text _nameTMP;
     /*
      * <summary>
-     * dscripcion atributo
+     * descripcion atributo:
+     * _showGema1, _showGema2, _showGema3: 
+     * Variables que almacenan objetos de texto (TMP_Text) utilizados para mostrar la cantidad de gemas
+     * de diferentes tipos en la interfaz.
+     * _showTiempo:
+     * Variable que almacena un objeto de texto (TMP_Text) utilizado para mostrar el tiempo transcurrido en la interfaz.
+       _showScore:
+    Variable que almacena un objeto de texto (TMP_Text) utilizado para mostrar la puntuación en la interfaz.
+       _showNameTMP: Variable que almacena un objeto de texto (TMP_Text) utilizado para mostrar el nombre del jugador en la interfaz.
      * </summary>
      */
     public TMP_Text _showGema1, _showGema2, _showGema3,_showTiempo,_showScore, _showNameTMP;
     /*
     * <summary>
-    * dscripcion atributo
+    * descripcion atributo:  Ruta del archivo JSON donde se guardan los datos del juego.
     * </summary>
     */
     private string dataFilePath = "Assets/DevFab/JSONs/DataJSON.json";
-
+    /*
+    * <summary>
+    * descripcion del metodo: Guarda los datos del juego (gemas, puntuación, tiempo y nombre del jugador) 
+    * en formato JSON y muestra los datos guardados en la interfaz.
+    * </summary>
+    */
     public void SaveDataToJson()
     {
         Data data = new Data();
@@ -60,6 +73,11 @@ public class SaveData : MonoBehaviour
         File.WriteAllText(dataFilePath, jsonData);
         MostrarDatosGuardados();
     }
+    /*
+    * <summary>
+    * descripcion del metodo:  Muestra los datos guardados (gemas, tiempo, puntuación y nombre del jugador) en la interfaz de usuario.
+    * </summary>
+    */
     public void MostrarDatosGuardados()
     {
         //_showGema1, _showGema2, _showGema3,_showTiempo,_showScore, _showNameTMP
@@ -71,6 +89,12 @@ public class SaveData : MonoBehaviour
         _showNameTMP.text = ""+_nameTMP.text ;
 
     }
+    /*
+    * <summary>
+    * descripcion del metodo: Carga los datos del juego desde un 
+    * archivo JSON y muestra esos datos en la interfaz, o muestra un mensaje si no se encuentra el archivo.
+    * </summary>
+    */
     public void LoadDataFrom()
     {
         if (File.Exists(dataFilePath))

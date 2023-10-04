@@ -16,7 +16,10 @@ public class CameraScript : MonoBehaviour
      </summary>
      */
     public Transform player;
-
+    /*<summary>
+     * Descripcion del metodo:Actualiza la posición de la cámara para seguir al jugador en el plano X e Y, mostrando un mensaje de error si el atributo "player" no tiene un objeto Transform asignado.
+     </summary>
+     */
     void Update()
     {
         if (player != null)

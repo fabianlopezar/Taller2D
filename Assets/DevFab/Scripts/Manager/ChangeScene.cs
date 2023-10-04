@@ -32,4 +32,15 @@ public class ChangeScene : MonoBehaviour
         string nameScene = "Inicio";
         SceneManager.LoadScene(nameScene);
     }
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("2"))
+        {
+            Scena2();
+        }
+        if (other.CompareTag("3"))
+        {
+            Scena3();
+        }
+    }
 }

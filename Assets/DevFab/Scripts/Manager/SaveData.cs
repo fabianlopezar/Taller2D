@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.IO;
+/*Johann Alberto Bocanegra - 2200850*/
 
 [System.Serializable]
 public class Data

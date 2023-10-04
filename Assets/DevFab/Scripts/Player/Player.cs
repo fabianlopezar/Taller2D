@@ -34,12 +34,20 @@ public class Player :Entity
     public float prueba;
     public Vector3 direction;
     public Vector3 direction2;
+    
+    [Header("Sonidos")]
+    public AudioClip jumpSound;
+    public AudioClip shootSound;
+    public AudioClip dashSound; 
+    public AudioClip damageSound; 
+    private AudioSource audioSource;
+
 
 
     protected override void Start()
     {
         base.Start();
-
+        audioSource = GetComponent<AudioSource>();
     }
     protected override void Update()
     {
@@ -123,6 +131,7 @@ public class Player :Entity
         {
             if (isGrounded)
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                audioSource.PlayOneShot(jumpSound);
         }
     }
 
@@ -221,13 +230,14 @@ public class Player :Entity
     public void Hit()
     {
         currentHealth -= 10;
+        audioSource.PlayOneShot(damageSound);
         EstaMuerto();        
     }
     private void Shoot()
     {       
         GameObject bala = Instantiate(balaPrefab, transform.position+direction2, Quaternion.identity);
-          bala.GetComponent<BalaScript>().SetDirection(direction);
-               
+        bala.GetComponent<BalaScript>().SetDirection(direction);
+        audioSource.PlayOneShot(shootSound);
     }
 
 }

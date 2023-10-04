@@ -184,6 +184,10 @@ public class Player :Entity
             chronometer.Instance.DetenerCronometro();
            SceneManager.LoadScene(nameScene);        
         }
+        if (other.CompareTag("Agua")){
+            Transform checkpoint = EncontrarCheckPoint(checkpointName);
+            this.gameObject.transform.position = checkpoint.position;
+        }
     }
     public void EstaMuerto()
     {
